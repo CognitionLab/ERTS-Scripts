@@ -1,0 +1,173 @@
+SCREENAREA 150 150
+
+COLOR Blue  R  0    0 100
+COLOR Gray  R  80  90 100
+COLOR White R 100 100 100
+COLOR Black R  10  10  10
+COLOR Turk  I  54 187 255
+COLOR Yell  C  60 100 100
+
+SCREENCOLOR White
+
+PICTURE Inst_Title T
+Instruction
+
+PICTURE Inst1_Text Tl
+In this test, you will be asked to say words
+that start with a specific letter!
+
+The computer will record your verbal answer.
+
+
+PICTURE Inst2_Text Tl
+You may say any words, except proper names 
+such as the names of people or places,
+so you would not say 'Rochester' or 'Robert.' 
+
+Also, do not use the same word again with a
+different ending, such as 'run' and 'running'!
+
+PICTURE Inst3_Text Tl
+To make sure the computer recognizes
+your verbal input, please say 
+one word at a time loud and clear. 
+
+Wait between each word until the computer 
+prompts you to speak the next word. 
+
+PICTURE Inst4_Text Tl
+For example, if you should generate words starting with R 
+you could say rat, river, or run. 
+
+Let's test if you can you think of any other words 
+beginning with the letter 'R' ?
+
+PICTURE Inst5_Text Tl
+Now we will start with the actual test with a new letter.
+Say all the words beginning with that letter that you can think of. 
+
+Remember, no names or people or places, just ordinary words. 
+
+Keep on trying until the time limit is up. You have one minute.
+
+PICTURE Inst6_Text Tl
+Take a short break!
+
+Once you are ready, start the next block 
+with another letter. 
+
+Say as many words as you can, but remember, 
+no names or people or places, just ordinary words. 
+
+
+PICTURE Next T
+Say "@CYell@NEXT@C@" to continue with instructions ... 
+PICTURE TestR T
+Say "@CYell@GO@C@" to see if you can say more words with R ... 
+PICTURE Start T
+Say "@CYell@GO@C@" to see the first letter which you should use! 
+PICTURE Restart T
+Say "@CYell@GO@C@" to see the next letter to use! 
+PICTURE ThankYou T
+You reached the end of this test.
+
+Thank you for your participant !
+
+PICTURE Ende T
+End of Test
+
+PICTURE F N
+PICTURE A N
+PICTURE S N
+PICTURE R N
+
+PICTURE Speak T
+Say a word starting with the letter above !
+
+
+PICTURE Vkon T
+VK On!
+
+POSITION Title P 0 -40
+POSITION Center P 0 0
+POSITION Press P 0  40
+POSITION Prompt P 0  20
+POSITION Echo P 0 30
+
+
+VOICEKEY Press
+Next:C
+Go:G
+
+VOICEKEY Produce
+*:RET
+
+KEY Produce
+RET VK
+
+FONT STD Arial 6 1.2
+FONT Big Arial 10 1 bold
+FONT Small Arial 5
+FONT BigLett Arial 20 1 bold
+
+
+TRIAL Instruct
+CS 1000
+VK Press
+SF Big
+SP ? Title
+SF STD
+&SP ? Center 1 0 0 Gray
+SF Small
+&SP ? Press 1 ?
+WK ?
+SF STD
+
+TRIAL Thanks
+SF Big
+SP ? Title
+SF STD
+&SP ? Center 1 3000 0 Gray
+
+
+TRIAL Talk
+VK Produce - ? 10
+SE Echo 1 - 2 5 60 1 Yell White
+RK Produce 0 2 - - 1
+SF BigLett
+SP ?=Letter Center 1 0 0 Yell
+SF Std
+&SP Speak Prompt 1 0 1
+FB *1 2 3 0 0 0 2
++CS 1000
+SF BigLett
+SP *2 Center 1 1000 0 Yell
+
+BLOCK R 1
+1 Talk R R 
+
+BLOCK F 1
+1 Talk F F 
+
+BLOCK A 1
+1 Talk A A 
+
+BLOCK S 1
+1 Talk S S 
+
+SESSION A
+RUNTRIAL Instruct Inst_Title Inst1_Text Next  500 C
+RUNTRIAL Instruct Inst_Title Inst2_Text Next  500 C
+RUNTRIAL Instruct Inst_Title Inst3_Text Next  500 C
+RUNTRIAL Instruct Inst_Title Inst4_Text Start 500 G
+RUNBLOCK  R 3
+RUNTRIAL Instruct Inst_Title Inst5_Text ReStart 500 G
+MAXTIME 30 0 0 
+RUNBLOCK  F 50
+RUNTRIAL Instruct Inst_Title Inst6_Text ReStart 500 G
+MAXTIME 30 0 0 	
+RUNBLOCK  A 50
+RUNTRIAL Instruct Inst_Title Inst6_Text ReStart 500 G
+MAXTIME 30 0 0 
+RUNBLOCK  S 50
+RUNTRIAL Thanks Ende ThankYou
